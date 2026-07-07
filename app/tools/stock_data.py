@@ -1,12 +1,10 @@
 import yfinance as yf
-from typing import Dict,Any
 
 
 def get_stock_data(ticker: str):
-    """
-    Fetch basic stock information from Yahoo Finance.
-    """
+
     stock = yf.Ticker(ticker)
+
     info = stock.info
 
     history = stock.history(period="1d")
@@ -17,9 +15,41 @@ def get_stock_data(ticker: str):
         current_price = float(history["Close"].iloc[-1])
 
     return {
+
         "company": info.get("longName"),
-        "current_price":info.get("currentPrice"),
-        "market_cap":info.get("marketCap"),
-        "volume":info.get("volume"),
-        "sector":info.get("sector")
+
+        "symbol": ticker.upper(),
+
+        "current_price": current_price,
+
+        "previous_close": info.get("previousClose"),
+
+        "market_cap": info.get("marketCap"),
+
+        "volume": info.get("volume"),
+
+        "average_volume": info.get("averageVolume"),
+
+        "sector": info.get("sector"),
+
+        "industry": info.get("industry"),
+
+        "country": info.get("country"),
+
+        "currency": info.get("currency"),
+
+        "pe_ratio": info.get("trailingPE"),
+
+        "forward_pe": info.get("forwardPE"),
+
+        "eps": info.get("trailingEps"),
+
+        "book_value": info.get("bookValue"),
+
+        "dividend_yield": info.get("dividendYield"),
+
+        "fifty_two_week_high": info.get("fiftyTwoWeekHigh"),
+
+        "fifty_two_week_low": info.get("fiftyTwoWeekLow")
+
     }

@@ -10,13 +10,13 @@ def get_technical_indicators(ticker: str):
 
     df = stock.history(period="6mo")
 
-    rsi = RSIIndicator(df["Close"]).rsi()
+    rsi = RSIIndicator(close=df["Close"], window=14).rsi()
 
-    ema = EMAIndicator(df["Close"]).ema_indicator()
+    ema = EMAIndicator(close=df["Close"], window=20).ema_indicator()
 
-    sma = SMAIndicator(df["Close"]).sma_indicator()
+    sma = SMAIndicator(close=df["Close"], window=50).sma_indicator()
 
-    macd = MACD(df["Close"])
+    macd = MACD(close=df["Close"])
 
     return {
         "rsi": round(rsi.iloc[-1], 2),

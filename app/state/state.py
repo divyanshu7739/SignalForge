@@ -3,9 +3,17 @@ from typing import TypedDict
 
 class AgentState(TypedDict):
     ticker: str
-    technical_analysis: str
-    news_analysis: str
-    fundamental_analysis: str
-    bull_case: str
-    bear_case: str
-    final_decision: str
+
+    news_report: str
+
+    technical_report: str
+
+    fundamental_report: str
+
+    sentiment_report: str
+
+    research_report: str
+
+    trader_report: str
+
+    bull_report: str
