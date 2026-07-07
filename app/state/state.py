@@ -19,3 +19,7 @@ class AgentState(TypedDict):
     bull_report: str
 
     bear_report: str
+
+    risk_report: str
+
+    portfolio_report: str

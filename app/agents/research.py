@@ -5,34 +5,68 @@ from langchain_core.prompts import ChatPromptTemplate
 def research_agent(state):
 
     prompt = ChatPromptTemplate.from_template("""
-You are a Senior Financial Research Analyst.
+You are the Research Manager of a financial investment firm.
 
-You have received reports from multiple analysts.
+You have received reports from multiple expert analysts.
 
-News Report:
+==================================================
+NEWS ANALYST REPORT
+==================================================
 {news}
 
-Technical Report:
+==================================================
+TECHNICAL ANALYST REPORT
+==================================================
 {technical}
 
-Fundamental Report:
+==================================================
+FUNDAMENTAL ANALYST REPORT
+==================================================
 {fundamental}
-                                              
-Sentiment Report:
+
+==================================================
+SENTIMENT ANALYST REPORT
+==================================================
 {sentiment}
 
+==================================================
+BULL RESEARCHER REPORT
+==================================================
+{bull}
 
-Your task:
+==================================================
+BEAR RESEARCHER REPORT
+==================================================
+{bear}
 
-1. Summarize all reports.
-2. Highlight opportunities.
-3. Highlight risks.
-4. Give Final Recommendation:
-   - BUY
-   - SELL
-   - HOLD
+Your responsibilities:
 
-5. Explain your reasoning.
+1. Summarize all analyst reports.
+2. Compare bullish and bearish arguments.
+3. Highlight key opportunities.
+4. Highlight major risks.
+5. Resolve conflicting opinions logically.
+6. Give an unbiased final investment recommendation.
+
+Return your report in the following format:
+
+## Executive Summary
+
+## Bullish Arguments
+
+## Bearish Arguments
+
+## Opportunities
+
+## Risks
+
+## Final Recommendation
+(BUY / HOLD / SELL)
+
+## Confidence Score
+(0-100)
+
+## Final Reason
 """)
 
     chain = prompt | llm
@@ -45,7 +79,11 @@ Your task:
 
         "fundamental": state["fundamental_report"],
 
-        "sentiment": state["sentiment_report"]
+        "sentiment": state["sentiment_report"],
+
+        "bull": state["bull_report"],
+
+        "bear": state["bear_report"]
 
     })
 
