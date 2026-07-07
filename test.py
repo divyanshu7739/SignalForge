@@ -5,6 +5,7 @@ from app.agents.sentiment import sentiment_agent
 from app.agents.research import research_agent
 from app.agents.trader import trader_agent
 from app.agents.bull import bull_agent
+from app.agents.bear import bear_agent
 
 
 state = {
@@ -25,9 +26,11 @@ state = sentiment_agent(state)
 
 print("Running Bull Agent...")
 state = bull_agent(state)
+
+print("Running Bear Agent...")
+state =bear_agent(state)
+
 print("Running Research Agent...")
-
-
 state = research_agent(state)
 
 print("Running Trader Agent...")

@@ -17,3 +17,5 @@ class AgentState(TypedDict):
     trader_report: str
 
     bull_report: str
+
+    bear_report: str
